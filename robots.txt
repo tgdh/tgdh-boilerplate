@@ -1,0 +1,12 @@
+# robots.txt
+User-agent: *
+Sitemap: http://boilerplate.tgdh.co.uk/sitemap?altTemplate=xmlsitemap
+Host: http://boilerplate.tgdh.co.uk
+Disallow: /aspnet_client/
+Disallow: /bin/
+Disallow: /config/
+Disallow: /data/
+Disallow: /umbraco/
+Disallow: /umbraco_client/
+Disallow: /usercontrols/
+Disallow: /xslt/
