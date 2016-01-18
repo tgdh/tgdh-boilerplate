@@ -17,25 +17,45 @@ textarea {
 	&:focus {
 		border-color: $pri;
 	}
+
+	.is-valid & {
+		border-color: $success;
+	}
+
+	.is-invalid & {
+		border-color: $error;
+	}
+
+	.is-disabled & {
+		background: $disabled;
+		cursor: not-allowed;
+	}
 }
 
 textarea {
 	overflow: auto; // Hide scrollbar IE
-	resize: none;
+	resize: vertical;
+
+	.is-disabled & {
+		resize: none;
+	}
 }
 
 label {
 	display: block;
-	margin-top: $line-height;
-	padding-bottom: $line-height / 2;
+	padding-bottom: 1rem;
 
-	&:first-child {
-		margin-top: 0;
+	.is-disabled & {
+		cursor: not-allowed;
 	}
 }
 
 label[for] {
 	cursor: pointer;
+
+	.is-disabled & {
+		cursor: not-allowed;
+	}
 }
 
 

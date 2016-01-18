@@ -1,10 +1,10 @@
 /* ===========================================================
 
-	# BUTTONS
+	# Buttons
 
 =========================================================== */
 
-.o-button {
+.c-button {
 	border-radius: $border-radius;
 	display: inline-block;
 	line-height: 1;
@@ -21,30 +21,35 @@
 	&:focus {
 		box-shadow: 0 .3rem 0 0 rgba( $black, .1 );
 	}
+
+	&.is-disabled {
+		background: $border-colour;
+		color: $white;
+		cursor: not-allowed;
+
+		&:hover,
+		&:focus {
+			background: $border-colour;
+		}
+	}
 }
 
-.o-button--primary {
+.c-button--primary {
 	background: $pri;
 	color: $white;
 
 	&:hover,
 	&:focus {
-		background: $sec;
+		background: $black;
 	}
 }
 
-.o-button--secondary {
+.c-button--secondary {
 	background: $sec;
 	color: $white;
 
 	&:hover,
 	&:focus {
-		background: $ter;
+		background: $black;
 	}
-}
-
-.o-button--disabled {
-	background: $border-colour;
-	color: $white;
-	cursor: not-allowed;
 }

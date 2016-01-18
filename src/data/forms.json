@@ -132,45 +132,89 @@
 	},
 
 	 "checkbox": {
-  	"label": "Checkbox",
-  	"optional": true,
-  	"checkboxes": [
-  		{
-  			"checkValue": "Choice A",
-  			"for": "checkbox1"
-  		},
-  		{
-  			"checkValue": "Choice B",
-  			"for": "checkbox2"
-  		},
-  		{
-  			"checkValue": "Choice C",
-  			"for": "checkbox3"
-  		}
-  	]
+    "label": "Checkbox",
+    "optional": true,
+    "checkboxes": [
+      {
+        "checkValue": "Choice A",
+        "for": "checkbox1Disabled"
+      },
+      {
+        "checkValue": "Choice B",
+        "for": "checkbox2Disabled"
+      },
+      {
+        "checkValue": "Choice C",
+        "for": "checkbox3Disabled"
+      }
+    ]
+  },
+
+  "checkbox-disabled": {
+    "label": "Checkbox",
+    "disabled": true,
+    "optional": true,
+    "checkboxes": [
+      {
+        "checkValue": "Choice A",
+        "for": "checkbox1"
+      },
+      {
+        "checkValue": "Choice B",
+        "for": "checkbox2"
+      },
+      {
+        "checkValue": "Choice C",
+        "for": "checkbox3"
+      }
+    ]
   },
 
   "radio": {
-  	"label": "Radio buttons",
-  	"optional": true,
-  	"radios": [
-  		{
-  			"radioValue": "Option A",
-  			"for": "radio1",
-  			"name": "radio"
-  		},
-  		{
-  			"radioValue": "Option B",
-  			"for": "radio2",
-  			"name": "radio"
+    "label": "Radio buttons",
+    "optional": true,
+    "radios": [
+      {
+        "radioValue": "Option A",
+        "for": "radio1",
+        "name": "radio"
+      },
+      {
+        "radioValue": "Option B",
+        "for": "radio2",
+        "name": "radio"
 
-  		},
-  		{
-  			"radioValue": "Option C",
-  			"for": "radio3",
-  			"name": "radio"
+      },
+      {
+        "radioValue": "Option C",
+        "for": "radio3",
+        "name": "radio"
 
-  		}
-  	]
+      }
+    ]
+  },
+  "radio-disabled": {
+    "label": "Radio buttons",
+    "disabled": true,
+    "optional": true,
+    "radios": [
+      {
+        "radioValue": "Option A",
+        "for": "radio1Disabled",
+        "name": "radio"
+      },
+      {
+        "radioValue": "Option B",
+        "for": "radio2Disabled",
+        "name": "radio"
+
+      },
+      {
+        "radioValue": "Option C",
+        "for": "radio3Disabled",
+        "name": "radio"
+
+      }
+    ]
   }
 }

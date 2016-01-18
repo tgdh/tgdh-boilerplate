@@ -4,7 +4,7 @@
 
 .o-form__field {
 	& + & {
-		padding-top: $padding-medium;
+		padding-top: $padding-small;
 	}
 }
 
@@ -178,9 +178,9 @@
 
 //= BUTTON ===================================================
 
-.o-input + .button,
-.o-select + .button,
-.o-textarea + .button {
+.o-input + .c-button,
+.o-select + .c-button,
+.o-textarea + .c-button {
 	margin-top: $line-height * 2;
 }
 
@@ -197,14 +197,6 @@
 }
 
 @include respond-min( $mq-medium ) {
-
-	.o-form__field {
-
-		& + & {
-			padding-top: $padding-large;
-		}
-
-	}
 
 	.enhance {
 

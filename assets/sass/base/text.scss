@@ -1,6 +1,6 @@
 /* ===========================================================
 
-	# TEXT
+	# Text
 
 =========================================================== */
 
@@ -40,7 +40,13 @@ ul + h2,
 ul + h3,
 ul + h4,
 ul + h5,
-ul + h6 {
+ul + h6,
+ol + h1,
+ol + h2,
+ol + h3,
+ol + h4,
+ol + h5,
+ol + h6 {
 	padding-top: $line-height;
 }
 
@@ -48,12 +54,19 @@ em {
 	font-style: italic;
 }
 
+small {
+	font-size: 80%;
+}
+
 ::selection {
 	background: $highlight-colour;
 }
 
-::-moz-selection {
-	background: $highlight-colour;
+hr {
+    height: 1px;
+    border: none;
+    color: $border-colour;
+    background-color: $border-colour;
 }
 
 @include respond-min( $mq-medium ) {
