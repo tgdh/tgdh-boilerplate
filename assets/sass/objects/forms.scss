@@ -1,5 +1,7 @@
 /* ===========================================================
+	
 	# Form
+
 =========================================================== */
 
 .o-form__field {
@@ -133,44 +135,62 @@
 
 .enhance {
 
-	.o-fieldset__item {
+	.o-checkbox,
+	.o-radio {
+		font-weight: normal;
+		padding: 2rem 2rem 2rem 3rem;
+		position: relative;
 
-		.o-label {
-			// background: $light-2;
-			// border: $border-width solid $light-1;
-			// border-radius: $border-radius;
-			font-weight: normal;
-			padding: 2rem 2rem 2rem 4rem;
-			position: relative;
-
-			&:after {
-				background: $light-1;
-				bottom: 2rem;
-				box-sizing: border-box;
-				content: '';
-				position: absolute;
-				left: 0;
-				top: 2rem;
-				width: 2.5rem;
-			}
+		.o-checkbox__label:before,
+		.o-radio__label:before {
+			content: "";
+			width: 2rem;
+			height: 2rem;
+			background: transparent;
+			border: $border-width solid $border-colour;
+			box-sizing: border-box;
+			content: '';
+			position: absolute;
+			top: 2rem;
+			bottom: 2rem;
+			left: 0;
+			transition: background-color $speed $ease,
+						border-color $speed $ease;
 		}
 
-		.o-label--checkbox {
-			&:after {
-				border-radius: $border-radius;
-			}
-		}
-
-		.o-label--radio {
-			&:after {
-				border-radius: 100%;
-			}
-		}
-
-		input {
+		.o-checkbox__input,
+		.o-radio__input {
 			display: none;
+
+			&:checked {
+				
+				+ .o-checkbox__label:before,
+				+ .o-radio__label:before {
+					background-color: $pri;
+					border-color: $pri;
+				}
+
+			}
+
 		}
 
+		.o-radio__label:before {
+			border-radius: 50%;
+		}
+
+	}
+
+
+	.o-label--checkbox {
+		&:after {
+			border-radius: $border-radius;
+		}
+	}
+
+	.o-label--radio {
+		&:after {
+			border-radius: 100%;
+		}
 	}
 
 }

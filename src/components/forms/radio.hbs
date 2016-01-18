@@ -4,8 +4,9 @@
 		<ul class="o-fieldset__list">
 			{{#each radios}}
 				<li class="o-fieldset__item">
-					<label class="o-label" for="{{for}}">
-						<input id="{{for}}" type="radio" name="{{name}}"> {{radioValue}}
+					<label class="o-label o-radio" for="{{for}}">
+						<input id="{{for}}" type="radio" name="{{name}}" class="o-radio__input"> 
+						<span class="o-radio__label">{{radioValue}}</span>
 					</label>
 				</li>
 			{{/each}}

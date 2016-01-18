@@ -1,11 +1,11 @@
 {
   "name": "tgdh-boilerplate",
-  "version": "0.0.0",
+  "version": "3.0.0",
   "siteUrl": "",
   "devDependencies": {
     "fastclick": "~1.0.6",
     "html5shiv": "~3.7.3",
-    "lazysizes": "~1.4.0",
-    "picturefill": "~3.0.1"
+    "picturefill": "~3.0.1",
+    "lazysizes": "~1.4.0"
   }
 }

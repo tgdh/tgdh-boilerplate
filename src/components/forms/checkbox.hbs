@@ -4,8 +4,9 @@
 		<ul class="o-fieldset__list">
 			{{#each checkboxes}}
 				<li class="o-fieldset__item">
-					<label class="o-label" for="{{for}}">
-						<input id="{{for}}" type="checkbox"> {{checkValue}}
+					<label class="o-label o-checkbox" for="{{for}}">
+						<input id="{{for}}" type="checkbox" class="o-checkbox__input"> 
+						<span class="o-checkbox__label">{{checkValue}}</span>
 					</label>
 				</li>
 			{{/each}}

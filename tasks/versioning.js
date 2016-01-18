@@ -7,7 +7,8 @@ module.exports = {
 	},
 	js: {
 		src: [
-			'<%= assetsBuildFolder %>/js/main.js'
+			'<%= assetsBuildFolder %>/js/main.js',
+			'<%= assetsBuildFolder %>/js/head.js'
 		]
 	},
 	css: {
