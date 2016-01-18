@@ -1,33 +1,20 @@
 'use strict';
 module.exports = {
-	dist: {
-        'devFile' : '<%= assetsFolder %>/_components/modernizr/modernizr.js',
-        'outputFile' : '<%= assetsBuildFolder %>/js/lib/modernizr.js',
-        'extra' : {
-            'printshiv' : false,
-            'shiv' : true,
-            'load' : false,
-            'mq' : false,
-            'cssclasses' : true
-        },
-        extensibility : {
-            'addtest' : false,
-            'prefixed' : false,
-            'teststyles' : false,
-            'testprops' : false,
-            'testallprops' : false,
-            'hasevents' : false,
-            'prefixes' : false,
-            'domprefixes' : false,
-            'cssclassprefix' : ''
-        },
-        'uglify' : false,
-        'tests' : [],
-        'parseFiles' : true,
+    dist: {
+        'dest' : '<%= assetsBuildFolder %>/js/lib/modernizr.js',
+        'parseFiles': true,
+        'customTests': [],
+        'devFile': false,
+        'outputFile': '<%= assetsBuildFolder %>/js/lib/modernizr-output.js',
+        'tests': [
+            // Tests
+        ],
+        'options': [
+            'setClasses'
+        ],
         'files' : {
-        	'src' : ['<%= assetsFolder %>/js/**/*.js','<%= assetsFolder %>/sass/**/*.scss']
+            'src' : ['<%= assetsFolder %>/js/**/*.js','<%= assetsFolder %>/sass/**/*.scss']
         },
-        'matchCommunityTests' : false,
-        'customTests' : []
+        'uglify': false
     }
 };
