@@ -1,9 +1,21 @@
 ( function() {
 	'use strict';
 
-	function IsModern() {
-		return ( 'querySelector' in document && 'localStorage' in window && 'addEventListener' in window );
-	}
+	var $window = window,
+		$html = document.querySelector('html');
 
-	window.IsModern = IsModern;
+	var IsModern = function() {
+		return ( 'querySelector' in document && 'localStorage' in window && 'addEventListener' in window );
+	};
+
+	$window.IsModern = IsModern;
+
+	if( $window.IsModern ){
+
+		if( $html.classList.contains('no-enhance') ) {
+			$html.classList.remove('no-enhance');
+			$html.classList.add('enhance');
+		}
+		
+	}
 })();
