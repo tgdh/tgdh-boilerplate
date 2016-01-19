@@ -43,3 +43,5 @@ $RECYCLE.BIN/
 
 umbraco/Views/Master.cshtml
 dev
+
+assets/js/lib/modernizr.js

@@ -4,7 +4,7 @@ module.exports = {
 		jshintrc: '.jshintrc',
 		ignores: [
 			'<%= assetsFolder %>/js/enhance.js',
-			'<%= assetsFolder %>/js/modernizr.js'
+			'<%= assetsFolder %>/js/lib/modernizr.js'
 		]
 	},
 	all: {

@@ -1,11 +1,10 @@
 'use strict';
 module.exports = {
     dist: {
-        'dest' : '<%= assetsBuildFolder %>/js/lib/modernizr.js',
+        'dest' : '<%= assetsFolder %>/js/lib/modernizr.js',
         'parseFiles': true,
         'customTests': [],
         'devFile': false,
-        'outputFile': '<%= assetsBuildFolder %>/js/lib/modernizr-output.js',
         'tests': [
             // Tests
         ],

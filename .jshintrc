@@ -7,7 +7,7 @@
     "newcap": false,
     "globals": {
         "module": false,
-        "Modernizr": true,
+        "Modernizr": false,
         "define": false,
         "jQuery": false,
         "require": false

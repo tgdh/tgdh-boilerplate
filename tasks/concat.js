@@ -2,7 +2,8 @@
 module.exports = {
 	head: {
 		src: [
-			'<%= assetsBuildFolder %>/js/lib/modernizr.js',
+			'<%= assetsFolder %>/js/lib/modernizr.js',
+			'<%= assetsFolder %>/js/utils/is-modern.js',
 			'<%= assetsFolder %>/_components/picturefill/dist/picturefill.js',
 			'<%= assetsFolder %>/js/lib/lazysizes.config.js',
 			'<%= assetsFolder %>/_components/lazysizes/lazysizes.js',
@@ -12,7 +13,6 @@ module.exports = {
 	},
 	fulljs: {
 		src: [
-			'<%= assetsFolder %>/js/utils/*js',
 			'<%= assetsFolder %>/js/components/*js',
 			'<%= assetsFolder %>/js/main.js'
 		],
