@@ -3,6 +3,7 @@
 	# Form
 
 =========================================================== */
+$line-height-half: $line-height / 2;
 
 .o-form__field {
 	& + & {
@@ -138,7 +139,7 @@
 	.o-checkbox,
 	.o-radio {
 		font-weight: normal;
-		padding: 2rem 2rem 2rem 3rem;
+		padding: $line-height-half $line-height-half $line-height-half 3rem;
 		position: relative;
 
 		.o-checkbox__label:before,
@@ -151,8 +152,7 @@
 			box-sizing: border-box;
 			content: '';
 			position: absolute;
-			top: 2rem;
-			bottom: 2rem;
+			top: $line-height-half;
 			left: 0;
 			transition: background-color $speed $ease,
 						border-color $speed $ease;
@@ -167,7 +167,7 @@
 				+ .o-checkbox__label:before,
 				+ .o-radio__label:before {
 					background-color: $pri;
-					border-color: $pri;
+					border-color: darken( $pri, 10 );
 				}
 
 			}
@@ -193,6 +193,18 @@
 		}
 	}
 
+	.is-disabled {
+
+		.o-checkbox__label,
+		.o-radio__label {
+
+			&:before {
+				background-color: $disabled;
+			}
+
+		}
+	}
+
 }
 
 
@@ -210,35 +222,6 @@
 
 		.o-fieldset__item + .o-fieldset__item {
 			// margin-top: $padding-small / 2;
-		}
-
-	}
-
-}
-
-@include respond-min( $mq-medium ) {
-
-	.enhance {
-
-		.o-fieldset__list {
-			margin-left: -$padding-small / 2;
-		}
-
-		.o-fieldset__item {
-			float: left;
-			padding-left: $padding-small / 2;
-			width: 50%;
-
-			&:nth-child( n+3 ) {
-				// margin-top: $padding-small / 4;
-			}
-
-			.o-label {
-				&:after {
-					width: 3rem;
-				}
-			}
-
 		}
 
 	}
