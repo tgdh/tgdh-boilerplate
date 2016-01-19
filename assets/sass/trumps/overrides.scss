@@ -12,18 +12,18 @@
 	@include hide-text;
 }
 
-.u-icons {
-	display: none;
-}
-
-.u-icon {
-	transition: fill $speed $ease;
-}
-
 .u-center-content {
 	text-align: center;
 }
 
 .u-highlight-text {
 	color: $pri;
+}
+
+@include respond-max( $mq-small ) {
+
+	.u-hide-mobile {
+		display: none;
+	}
+
 }
