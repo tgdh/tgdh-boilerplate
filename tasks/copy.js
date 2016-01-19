@@ -10,6 +10,14 @@ module.exports = {
 			}
 		]
 	},
+	components: {
+		files: [
+			{
+				src: '<%= assetsFolder %>_components/html5shiv/dist/html5shiv.min.js',
+				dest: '<%= assetsBuildFolder %>/js'
+			}
+		]
+	},
 	robots: {
 		files: [
 			{
