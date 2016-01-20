@@ -111,7 +111,7 @@ figcaption {
 	font-size: $font-size-small / $type-scale-small;
 }
 
-@include respond-min( $mq-small ) {
+@include respond-min-max( $mq-small, $mq-medium ) {
 	.u-tera {
 		@include heading-font-size( $tera-medium );
 	}
