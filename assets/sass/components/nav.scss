@@ -4,10 +4,6 @@
 
 =========================================================== */
 
-.c-page__header {
-	background: #ebebeb;
-}
-
 .c-nav--main {
 
 	.c-nav__list {
@@ -18,11 +14,28 @@
 		margin: 0;
 	}
 
+	.c-nav__link {
+		color: $text-colour;
+		transition: color $speed $ease,
+					background $speed $ease;
+
+		&:hover,
+		&:focus {
+			color: $sec;
+		}
+
+		&.is-active {
+			color: $pri;
+		}
+	}
+
 }
 
-@include respond-min( $mq-medium ) {
+@include respond-min( $mq-large ) {
 
 	.c-nav--main {
+		position: relative;
+		z-index: 10;
 
 		.c-nav__item {
 			display: inline;
@@ -31,6 +44,63 @@
 		.c-nav__link {
 			display: inline-block;
 			padding: 1rem;
+		}
+
+		.c-nav__list--parent {
+			position: relative;
+		}
+
+		.c-nav__list--sub {
+			min-width: 20rem;
+			color: $white;
+			background-color: $pri;
+			position: absolute;
+			left: 0;
+			opacity: 0;
+			visibility: hidden;
+			margin-top: 0;
+			transform: translateY(-.3rem);
+			transition: opacity $speed $ease,
+						visibility $speed $ease,
+						transform $speed $ease;
+
+			.c-nav__item,
+			.c-nav__link {
+				display: block;
+			}
+
+			.c-nav__link {
+				margin: 0;
+				padding-top: 1rem;
+
+				&:hover,
+				&:focus {
+					color: $white;
+					background-color: darken( $pri, 15 );
+				}
+
+				&.is-active {
+					color: $white;
+					background-color: $sec;
+
+					&:hover,
+					&:focus {
+						background-color: $sec;
+					}
+				}
+
+			}
+
+		}
+
+		.c-nav__item--parent:hover {
+			
+			.c-nav__list--sub {
+				opacity: 1;
+				visibility: visible;
+				transform: translateY(0);
+			}
+
 		}
 
 	}
