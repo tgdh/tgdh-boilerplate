@@ -55,6 +55,7 @@ $type-scale-large:		1.175;
 $heading-colour:		$black;
 $text-colour:			$black;
 $background-colour:		$white;
+$placeholder-colour:	$light-1;
 $border-colour:			#ccc;
 $link-colour:			$pri;
 $link-colour-hover:		$sec;
@@ -73,6 +74,7 @@ $padding-large:			8rem;
 $border-width: 			.2rem;
 $border-radius: 		.4rem;
 $speed: 				.3s;
+$ease:					ease;
 
 $light:					300;
 $regular:				500;
@@ -83,7 +85,6 @@ $wrap-medium:			92rem;
 $wrap-large:			108rem;
 $wrap-x-large:			140rem;
 
-$ease:					ease;
 
 /* ===========================================================
 
