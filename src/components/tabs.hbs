@@ -1,0 +1,49 @@
+<!-- http://heydonworks.com/practical_aria_examples/ -->
+<!--
+<div class="c-tabs js-tabs">
+	<nav class="c-tabs__nav">
+		<ul class="c-tabs__tabs-list js-tabs-nav" role="tablist">
+			<li role="presentation" class="c-tabs__tab-item">
+				<a href="#section1" class="c-tabs__tab" role="tab" aria-controls="section1" aria-selected="true">Section 1</a>
+			</li>
+			<li role="presentation" class="c-tabs__tab-item">
+				<a href="#section2" class="c-tabs__tab" role="tab" aria-controls="section2">Section 2</a>
+			</li>
+			<li role="presentation" class="c-tabs__tab-item">
+				<a href="#section3" class="c-tabs__tab" role="tab" aria-controls="section3">Section 3</a>
+			</li>
+		</ul>
+		
+		<button class="c-tabs__page c-tabs__page--prev js-tabs-page-prev">&lt;</button>
+		<button class="c-tabs__page c-tabs__page--next js-tabs-page-next">&gt;</button>
+	</nav>
+
+	<div class="c-tabs__content js-tabs-content">
+		<section id="section1" class="c-tabs__content" role="tabpanel">First</section>
+		<section id="section2" class="c-tabs__content" role="tabpanel" aria-hidden="true">Second</section>
+		<section id="section3" class="c-tabs__content" role="tabpanel" aria-hidden="true">Third</section>
+	</div>
+</div>
+-->
+
+
+<div class="c-tabs js-tabs">
+	<nav class="c-tabs__nav">
+		<ul class="c-tabs__nav-list" role="tablist">
+			<li class="c-tabs__nav-item" role="presentation">
+				<a href="#section1" class="c-tabs__nav-tab" role="tab" aria-controls="section1" aria-selected="true">First tab</a>
+			</li>
+			<li class="c-tabs__nav-item" role="presentation">
+				<a href="#section2" class="c-tabs__nav-tab" role="tab" aria-controls="section2">Second tab</a>
+			</li>
+		</ul>
+	</nav>
+	<div class="c-tabs__content">
+		<section id="section1" class="c-tabs__content-tab" role="tabpanel">
+			Content for a tab 1
+		</section>
+		<section id="section2" class="c-tabs__content-tab" role="tabpanel" aria-hidden="true">
+			Content for a tab 2
+		</section>
+	</div>
+</div>
