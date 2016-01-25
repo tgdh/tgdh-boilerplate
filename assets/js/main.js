@@ -54,6 +54,7 @@
 	if( $window.IsModern ){
 
 		enhanceEdgeCaseBrowsers();
+		$('.js-tabs').tabs();
 
 		// tabs dev
 //		scollTabsButtons();

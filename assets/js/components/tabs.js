@@ -1,26 +1,73 @@
+/*
 (function($){
 	'use strict';
 	
 	var $window = window,
-	$tabsHandler = $('.js-tabs');
+		$selector = $('.js-tabs');
 
-	$tabsHandler.each(function(){
+	$selector.each(function(){
 		var $tabs 		= $(this),
 			$nav 		= $tabs.find('nav'),
 			$navList	= $nav.find('ul'),
-			$content 	= $tabs.find('.c-tabs__content');
+			$navItems	= $navList.find('li'),
+			$navLinks	= $navItems.find('a'),
+			$content 	= $tabs.find('.c-tabs__content'),
+			$contentTabs	= $content.children(),
+			tabLength	= $navItems.length;
 
-		var _init = function() {
-			$navList.children().first().addClass('is-active');
+		$navList.find('li').on('click', function( e ){
+			e.preventDefault();
+			var $this = $(this);
+
+			if( !$this.hasClass('is-active') ) {
+				_setActiveTab( $this.data('index') );
+			}
+
+		});
+
+		var _setActiveTab = function( i ) {
+			var $activeNavItem 		= $navList.find('[data-index="'+ i +'"]'),
+				$activeContentTab 	= $content.find('[data-index="' + i + '"]');
+
+			$navList.find('.is-active').removeClass('is-active');
+			$content.find('.is-active').removeClass('is-active');
+
+			$activeNavItem.addClass('is-active');
+			$activeContentTab.addClass('is-active');
+
+			_animateContentHeight( $activeContentTab );
 		};
 
+		// @todo pass active content element to helper
+		var _animateContentHeight = function( el ) {
+
+			$content.animate({
+				'height': el.innerHeight()
+			}, 200);
+
+		};
+
+		var _setupTabIndexes = function() {
+
+			for( var i = 0; i < tabLength; i++ ) {
+				$navItems.eq( i ).attr('data-index', i);
+				$contentTabs.eq( i ).attr('data-index', i);
+			}
+		};
+
+		var _init = function() {
+			_setupTabIndexes();
+
+			$navItems.first().addClass('is-active');
+			$contentTabs.first().addClass('is-active');
+		};
 		_init();
-	});
-	
+	});	
+*/	
 
 /* ===========================================================
 	# Init
-=========================================================== */
+=========================================================== 
 	if( $window.IsModern ){
 
 	}

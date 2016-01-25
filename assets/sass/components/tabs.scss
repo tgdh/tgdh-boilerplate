@@ -107,4 +107,22 @@
 
 	}
 
+	.c-tabs__content {
+		position: relative;
+	}
+
+	.c-tabs__content-tab {
+		padding: 1rem;
+		position: absolute;
+		visibility: hidden;
+		opacity: 0;
+		transition: opacity $speed $ease,
+					visibility $speed $ease;
+
+		&.is-active {
+			opacity: 1;
+			visibility: visible;
+		}
+	}
+
 }
