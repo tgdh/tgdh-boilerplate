@@ -1,0 +1,30 @@
+---
+title: Text page
+---
+
+<!-- STICKY FOOTER PROBABLY DOESN'T WORK WITH SIDEBAR APPROACH -->
+
+<main class="o-page__inner o-page__content o-wrap o-wrap--large s-free-content" role="main">
+	<h1 class="o-page__heading">{{title}}</h1>
+</main>
+
+<!-- or -->
+
+<div class="o-page__inner o-wrap o-wrap--x-large u-clearfix">
+	<main class="o-page__content o-page__content--sidebar-layout s-free-content">
+		<h1 class="o-page__heading">{{title}}</h1>
+	</main>
+	<aside class="o-page__sidebar">
+		<!-- sidebar content -->
+	</aside>
+</div>
+
+<!-- note: there's a scope on the wrap -->
+<div class="o-page__inner o-wrap o-wrap--x-large u-clearfix s-layout-subnav">
+	<main class="o-page__content o-page__content--sidebar-layout s-free-content">
+		<h1 class="o-page__heading">{{title}}</h1>
+	</main>
+	<nav class="o-page__sidebar c-nav c-nav--sub">
+		{{> subnav }}
+	</nav>
+</div>
