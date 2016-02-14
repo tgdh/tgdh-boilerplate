@@ -16,6 +16,8 @@
 
 	.c-nav__link {
 		color: $text-colour;
+		padding: 1rem;
+		display: block;
 		transition: color $speed $ease,
 					background $speed $ease;
 
@@ -27,6 +29,98 @@
 		&.is-active {
 			color: $pri;
 		}
+	}
+
+	.c-nav__item--parent .c-nav__list-sub {
+		display: none;
+	}
+
+}
+
+@include respond-max( $mq-small ) {
+
+	.enhance {
+
+		.c-nav--main {
+
+			.c-nav__link {
+				padding: 1rem 1.5rem;
+			}
+
+		}
+
+	}
+
+}
+
+@include respond-min-max( $mq-small, $mq-medium ) {
+
+	.enhance {
+
+		.c-nav--main {
+
+			.c-nav__link {
+				padding: 1rem 2rem;
+			}
+
+		}
+
+	}
+
+}
+
+@include respond-min-max( $mq-medium, $mq-large ) {
+
+	.enhance {
+
+		.c-nav--main {
+
+			.c-nav__link {
+				padding: 1rem 4rem;
+			}
+
+		}
+
+	}
+
+}
+
+@include respond-max( $mq-large ) {
+	
+	.enhance {
+
+		.c-header__nav-wrap {
+			position: absolute;
+			right: 0;
+			left: 0;
+			visibility: hidden;
+			opacity: 0;
+			background-color: $pri;
+			transform: translateY(-1rem);
+			transition: opacity $speed $ease,
+						visibility $speed $ease,
+						transform $speed $ease;
+		}
+
+		&.nav-main-open {
+
+			.c-header__nav-wrap {
+				opacity: 1;
+				visibility: visible;
+				transform: translateY(0rem);
+
+				.c-nav__link {
+					color: $white;
+
+					&.is-active {
+						color: $pri;
+					}
+				}
+
+			}
+
+		}
+
 	}
 
 }
@@ -44,6 +138,11 @@
 		.c-nav__link {
 			display: inline-block;
 			padding: 1rem;
+			transition: color $speed $ease;
+
+			&.is-active {
+				color: $pri;
+			}
 		}
 
 		.c-nav__list--parent {
@@ -72,6 +171,7 @@
 			.c-nav__link {
 				margin: 0;
 				padding-top: 1rem;
+				
 
 				&:hover,
 				&:focus {

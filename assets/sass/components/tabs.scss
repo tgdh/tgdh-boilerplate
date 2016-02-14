@@ -8,19 +8,31 @@
 
 	.c-tabs__nav {
 		border-left: .2rem solid $pri;
+		margin-bottom: $line-height;
+
+		&:before {
+			content: "Contents";
+			padding: 1rem;
+			font-weight: $bold;
+			font-size: 1.2rem;
+		}
 	}
 
-	.c-tabs__tabs-list {
+	.c-tabs__nav-list {
 		list-style: none;
 	}
 
-	.c-tabs__tab-item {
+	.c-tabs__nav-item {
 		margin: 0;
 	}
 
-	.c-tabs__tab {
+	.c-tabs__nav-tab {
 		padding: ( $line-height / 4 ) $line-height / 2;
 		display: block;
+	}
+
+	.c-tabs__content-tab + .c-tabs__content-tab {
+		margin-top: $line-height;
 	}
 
 }
@@ -29,7 +41,6 @@
 
 	.c-tabs__nav {
 		position: relative;
-		background: $light-1;
 		overflow: hidden;
 	}
 
@@ -42,8 +53,9 @@
 		list-style: none;
 		overflow-x: auto;
     	overflow-y: hidden;
-    	width: calc( 100% - 6rem );
-		margin-left: 3rem;
+    	width: 100%;
+//    	width: calc( 100% - 6rem );
+//		margin-left: 3rem;
 	}
 
 	.c-tabs__nav-item {
@@ -56,17 +68,6 @@
 		display: block;
 		transition: color $speed $ease,
 					background $speed $ease;
-	}
-
-	.c-tabs__nav-item {
-
-		&.is-active {
-
-			.c-tabs__nav-tab {
-				color: $white;
-				background-color: $pri;
-			}
-		}
 	}
 
 	.c-tabs__page {
@@ -109,6 +110,7 @@
 
 	.c-tabs__content {
 		position: relative;
+		transition: height $speed $ease;
 	}
 
 	.c-tabs__content-tab {
@@ -124,5 +126,45 @@
 			visibility: visible;
 		}
 	}
+
+}
+
+/* Theme */
+
+.enhance {
+
+	.c-tabs__nav-item {
+
+		+ .c-tabs__nav-item {
+			margin-left: $line-height;
+		}
+
+		.c-tabs__nav-tab {
+			color: $white;
+			padding: 1.4rem 4rem;
+			background-color: $pri;
+			border-radius: $border-radius $border-radius 0 0;
+
+			&:hover,
+			&:focus {
+				background-color: $light-1;
+			}
+		}
+
+		&.is-active .c-tabs__nav-tab {
+			color: $pri;
+		}
+
+	}
+
+	.c-tabs__content {
+		background-color: $light-1;
+
+	}
+
+	.c-tabs__content-tab {
+		padding: $line-height * 2;
+	}
+
 
 }
