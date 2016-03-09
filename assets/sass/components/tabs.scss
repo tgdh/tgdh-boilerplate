@@ -38,6 +38,15 @@
 }
 
 .enhance {
+	
+	.js-tabs {
+		opacity: 0;
+		transition: opacity $speed $ease;
+
+		&.js-tabs--loaded {
+			opacity: 1;
+		}
+	}
 
 	.c-tabs__nav {
 		position: relative;
@@ -61,6 +70,10 @@
 	.c-tabs__nav-item {
 		margin: 0;
 		flex-shrink: 0;
+
+		&.is-active .c-tabs__nav-tab {
+			cursor: default;
+		}
 	}
 
 	.c-tabs__nav-tab {
@@ -74,8 +87,6 @@
 		position: absolute;
 		top: 0;
 		bottom: 0;
-		padding: 1rem;
-		background-color: $light-1;
 		transition: color $speed $ease,	
 					opacity $speed $ease;
 
@@ -114,6 +125,7 @@
 	}
 
 	.c-tabs__content-tab {
+		width: 100%;
 		padding: 1rem;
 		position: absolute;
 		visibility: hidden;
@@ -133,6 +145,11 @@
 
 .enhance {
 
+	.c-tabs__nav {
+		padding-left: 5rem;
+		padding-right: 5rem;
+	}
+
 	.c-tabs__nav-item {
 
 		+ .c-tabs__nav-item {
@@ -141,25 +158,30 @@
 
 		.c-tabs__nav-tab {
 			color: $white;
-			padding: 1.4rem 4rem;
 			background-color: $pri;
+			padding: 1.4rem 4rem;
 			border-radius: $border-radius $border-radius 0 0;
 
 			&:hover,
 			&:focus {
-				background-color: $light-1;
+				background-color: darken( $pri, 5% );
 			}
 		}
 
 		&.is-active .c-tabs__nav-tab {
 			color: $pri;
+			background-color: $light-1;
 		}
 
 	}
 
+	.c-tabs__page,
 	.c-tabs__content {
 		background-color: $light-1;
+	}
 
+	.c-tabs__page {
+		padding: 1rem;
 	}
 
 	.c-tabs__content-tab {

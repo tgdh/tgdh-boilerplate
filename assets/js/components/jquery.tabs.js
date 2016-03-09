@@ -35,6 +35,7 @@
 		// Avoid Plugin.prototype conflicts
 		$.extend(Plugin.prototype, {
 			init: function () {
+				this._activeTab		= ( this.getUrlHash() !== "" ? $('#' + this.getUrlHash() ).index() : 0 );
 				this.$nav 			= this.element.find('nav');
 				this.$navList		= this.$nav.find('ul');
 				this.$navItems		= this.$navList.find('li');
@@ -42,6 +43,9 @@
 				this.$content 		= this.element.find('.c-tabs__content');
 				this.$contentTabs	= this.$content.children();
 				this._tabLength		= this.$navItems.length;
+				this._resizeTimer	= 0;
+
+				this.element.addClass('js-tabs--loaded');
 
 				// Place initialization logic here
 				// You already have access to the DOM element and
@@ -49,23 +53,40 @@
 				// and this.settings
 				// you can add more functions like the one below and
 				// call them like the example bellow
-				this.setTabIndexes();
+//				this.setTabIndexes();
 				this.setEventHandlers();
 				// @todo get hash fragment or first
-				this.setActiveTab( 0 );
+				this.setActiveTab( this._activeTab );
+				this.resizeHandler();
+				this.addNav();
+
+			},
+			getUrlHash: function() {
+//				return document.URL.substr(document.URL.indexOf('#')+1);
+				return location.hash.match(/^#?(.*)$/)[1];
 			},
 			setEventHandlers: function() {
 				var $self = this;
 
 				$self.$navList.find('li').on('click', function( e ){
-					e.preventDefault();
 					var $this = $(this);
 
 					if( !$this.hasClass('is-active') ) {
-						$self.setActiveTab( $this.data('index') );
+						$self.setActiveTab( $this.index() );
+						$self.setActiveHash( $this.find('a').attr('href') );
 					}
-
+					e.preventDefault();
 				});
+			},
+			setActiveHash: function( urlHash ) {
+				if( Modernizr.history ) {
+					history.pushState( null, null, urlHash );
+				}
+				/*
+				else {
+					location.hash = urlHash;
+				}
+				*/
 			},
 			setTabIndexes: function() {
 				for( var i = 0; i < this._tabLength; i++ ) {
@@ -73,10 +94,11 @@
 					this.$contentTabs.eq( i ).attr('data-index', i);
 				}
 			},
-			// @todo set active tab based on location hash else id
 			setActiveTab: function( i ) {
-				var $activeNavItem 		= this.$navList.find('[data-index="'+ i +'"]'),
-					$activeContentTab 	= this.$content.find('[data-index="' + i + '"]');
+				this._activeTab = i;
+
+				var $activeNavItem 		= this.$navList.children('li').eq( this._activeTab ),
+					$activeContentTab 	= this.$content.children('section').eq( this._activeTab );
 
 				this.$navList.find('.is-active').removeClass('is-active');
 				this.$content.find('.is-active').removeClass('is-active');
@@ -86,11 +108,77 @@
 
 				this.animateContentHeight( $activeContentTab );
 			},
+			addNav: function() {
+				var delta = 40,
+					$self = this,
+					$prevButton = $('<button>', {
+						'class': 'c-tabs__page c-tabs__page--prev js-tabs-page-prev',
+						'text': 'prev'
+					}),
+					$nextButton = $('<button>', {
+						'class': 'c-tabs__page c-tabs__page--next js-tabs-page-next',
+						'text': 'next'
+					});
+
+				this.$nav.prepend( $prevButton );
+				this.$nav.append( $nextButton );
+
+				this.$navList.on('scroll', function() {
+					$self.updateScrollIndicator( $prevButton, $nextButton );
+				} );
+				this.updateScrollIndicator( $prevButton, $nextButton );
+
+				$nextButton.on('click', function() {
+					$self.scrollMenuBar( delta );
+				});
+
+				$nextButton.on('tap', function() {
+					$self.scrollMenuBar( delta );
+				});
+				$prevButton.on('click', function() {
+					$self.scrollMenuBar( -delta );
+				});
+				$prevButton.on('tap', function() {
+					$self.scrollMenuBar( -delta );
+				});
+			},
+			updateScrollIndicator: function( $leftScroll, $rightScroll) {
+				var $self = this,
+					$menuBar = $self.$navList.get(0);
+
+				$leftScroll.removeClass('is-disabled');
+				$rightScroll.removeClass('is-disabled');
+				
+				if( $menuBar.scrollLeft <= 0 ) {
+					$leftScroll.addClass('is-disabled');
+				}
+
+				// 5px tolerance because browsers!
+				if( $menuBar.scrollLeft + $self.$navList.innerWidth() + 5 >= $menuBar.scrollWidth ) {
+					$rightScroll.addClass('is-disabled');
+				}
+			},
+			scrollMenuBar: function( delta ) {
+				var $menuBar = this.$navList.get(0);
+				$menuBar.scrollLeft += delta;
+			},
 			animateContentHeight: function( el ) {
-				this.$content.animate({
+				this.$content.css({
 					'height': el.innerHeight()
-				}, 200);
+				});
+			},
+			resizeHandler: function() {
+				var $activeContentTab = this.$content.children('section').eq( this._activeTab ),
+					$self = this;
+
+				// On resize, run the function and reset the timeout
+				// 250 is the delay in milliseconds. Change as you see fit.
+				$(window).resize(function() {
+					clearTimeout( this._resizeTimer );
+					this._resizeTimer = setTimeout( $self.animateContentHeight( $activeContentTab ), 250 );
+				});
 			}
+				
 		});
 
 		// A really lightweight plugin wrapper around the constructor,

@@ -22,6 +22,7 @@ module.exports = function ( grunt ) {
 		assetsFolder: 'assets',
 		siteFolder: 'src',
 		assetsBuildFolder: 'dev/assets'
+//		assetsBuildFolder: '../umbraco-starterkit/UmbracoStarterKit/assets'
 	};
 
 
