@@ -37,26 +37,26 @@
 
 	.c-nav__item--parent {
 
-		.c-nav__list--sub {
-			margin: 0;
-			padding-left: $line-height;
+	}
+
+	.c-nav__list--sub {
+		margin: 0;
+		padding-left: $line-height;
+		background-color: $l-blue;
+
+		.c-nav__link {
 			background-color: $l-blue;
 
-			.c-nav__link {
-				background-color: $l-blue;
+			&:hover,
+			&:focus {
+				background-color: darken( $l-blue, 5 );
+			}
 
-				&:hover,
-				&:focus {
-					background-color: darken( $l-blue, 5 );
-				}
-
-				&.is-active {
-					color: $pri;
-					font-weight: 700;
-				}
+			&.is-active {
+				color: $pri;
+				font-weight: 700;
 			}
 		}
-
 	}
 
 }

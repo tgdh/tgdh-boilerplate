@@ -23,11 +23,11 @@
 		@include pad-top(600,400);
 		background-color: $light-1;
 		overflow: hidden;
-
-		.c-gallery__inner {
-			position: absolute;
-			top: 0;
-		}
+	}
+	
+	.c-gallery__inner {
+		position: absolute;
+		top: 0;
 	}
 
 }
