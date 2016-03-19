@@ -76,27 +76,25 @@ h1,
 	@include heading-font-size( $alpha-small );
 }
 
-h2,
 .u-beta {
 	@include heading-font-size( $beta-small );
 }
 
-h3,
+h2,
 .u-gamma {
 	@include heading-font-size( $gamma-small );
 }
 
-h4,
 .u-delta {
 	@include heading-font-size( $delta-small );
 }
 
-h5,
+h3,
 .u-epsilon {
 	@include heading-font-size( $epsilon-small );
 }
 
-h6,
+h4,
 .u-zeta {
 	@include heading-font-size( $zeta-small );
 }
@@ -129,27 +127,25 @@ figcaption {
 		@include heading-font-size( $alpha-medium );
 	}
 
-	h2,
 	.u-beta {
 		@include heading-font-size( $beta-medium );
 	}
 
-	h3,
+	h2,
 	.u-gamma {
 		@include heading-font-size( $gamma-medium );
 	}
 
-	h4,
 	.u-delta {
 		@include heading-font-size( $delta-medium );
 	}
 
-	h5,
+	h3,
 	.u-epsilon {
 		@include heading-font-size( $epsilon-medium );
 	}
 
-	h6,
+	h4,
 	.u-zeta {
 		@include heading-font-size( $zeta-medium );
 	}
@@ -182,27 +178,25 @@ figcaption {
 		@include heading-font-size( $alpha-large );
 	}
 
-	h2,
 	.u-beta {
 		@include heading-font-size( $beta-large );
 	}
 
-	h3,
+	h2,
 	.u-gamma {
 		@include heading-font-size( $gamma-large );
 	}
 
-	h4,
 	.u-delta {
 		@include heading-font-size( $delta-large );
 	}
 
-	h5,
+	h3,
 	.u-epsilon {
 		@include heading-font-size( $epsilon-large );
 	}
 
-	h6,
+	h4,
 	.u-zeta {
 		@include heading-font-size( $zeta-large );
 	}

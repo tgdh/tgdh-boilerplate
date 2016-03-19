@@ -63,17 +63,17 @@ label[for] {
 //= PLACEHOLDER ==============================================
 
 ::-webkit-input-placeholder {
-   color: $placeholder-colour;
+   color: $form-placeholder-colour;
 }
 
 :-moz-placeholder { // Firefox 18-
-   color: $placeholder-colour;
+   color: $form-placeholder-colour;
 }
 
 ::-moz-placeholder {  // Firefox 19+
-   color: $placeholder-colour;
+   color: $form-placeholder-colour;
 }
 
 :-ms-input-placeholder {
-   color: $placeholder-colour;
+   color: $form-placeholder-colour;
 }
