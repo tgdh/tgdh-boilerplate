@@ -1,8 +1,7 @@
 /* ===========================================================
 	# TODO
 
-    // CSS IE
-        - add stripmq and pixrem task for IE.css
+    // http://www.andismith.com/blog/2014/05/the-perfect-workflow/
 
     // JS
         - Compare jshint to lint
@@ -14,12 +13,6 @@
     // Images
         - Need to look at this completely
         - Gulpicon would be good ot look at
-
-    // Clean
-        - Consider cleaning .tmp dir before building
-
-    // Cache
-        - Look into this a bit: https://github.com/contra/gulp-cached
 
 =========================================================== */
 
@@ -95,8 +88,8 @@ gulp.task( 'css', function() {
         .pipe( $.if( isProduction, $.cssnano() ) )
 //        .pipe( $.size({ title: '[CSS]' }) )
         .pipe( $.sourcemaps.write( './' ) )
-        .pipe( gulp.dest( paths.assetsBuildFolder + '/css' ) )
-        .pipe( $.notify({ message: 'CSS: <%= file.relative %>' }) );
+        .pipe( gulp.dest( paths.assetsBuildFolder + '/css' ) );
+//        .pipe( $.notify({ message: 'CSS: <%= file.relative %>' }) );
 });
 
 // @todo js: Compare jshint to lint
@@ -108,8 +101,8 @@ gulp.task('js', function() {
         .pipe( $.concat('head.js') )
         .pipe( $.if( isProduction, $.uglify({preserveComments: 'some'}) ) )
 //        .pipe( $.size({title: '[Head JS]'}) )
-        .pipe( gulp.dest( paths.assetsBuildFolder + '/js') )
-        .pipe( $.notify({ message: 'JS: <%= file.relative %>' }) );
+        .pipe( gulp.dest( paths.assetsBuildFolder + '/js') );
+//        .pipe( $.notify({ message: 'JS: <%= file.relative %>' }) );
 
     var main = gulp.src( mainScripts )
         .pipe( $.newer('.tmp/scripts') )
@@ -122,8 +115,8 @@ gulp.task('js', function() {
         .pipe( $.if( isProduction, $.uglify({preserveComments: 'some'}) ) )
 //        .pipe( $.size({title: '[Main JS]'}) )
         .pipe( $.sourcemaps.write('.') )
-        .pipe( gulp.dest( paths.assetsBuildFolder + '/js' ) )
-        .pipe( $.notify({ message: 'JS: <%= file.relative %>' }) );
+        .pipe( gulp.dest( paths.assetsBuildFolder + '/js' ) );
+//        .pipe( $.notify({ message: 'JS: <%= file.relative %>' }) );
 
     return merge( head, main );
 });
@@ -138,24 +131,44 @@ gulp.task('modernizr', function(){
     .pipe( $.modernizr({
         'options': ['setClasses']
     }) )
-    .pipe(gulp.dest( paths.assetsFolder + '/js/lib/') );
+    .pipe( gulp.dest( paths.assetsFolder + '/js/lib') );
 });
 
+// Optimize images
+// gulp.task('images', function() {
+//     return gulp.src( paths.assetsFolder + '/img/**/*')
+//         .pipe( $.cache( $.imagemin({
+//             progressive: true,
+//             interlaced: true
+//         })))
+//         .pipe( gulp.dest( paths.assetsBuildFolder + '/img') )
+//         .pipe( $.size({title: 'images'}) )
+//         .pipe( $.notify({ message: 'images task complete' }) );
+// });
 
-// @todo copy images, svgmin, svg2png, imageoptim vs imagemin for images:build
+
+// @todo svgmin, svg2png,
+// compare imageoptim vs imagemin
+// imageoptim does png, jpg, gif - only works on mac
+// imagemin does svg, jpg, png, gif
 gulp.task('images', function() {
   return gulp.src( paths.assetsFolder + '/img/**/*')
     .pipe(
-        cache(
+        $.cache(
             $.imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })
         )
     )
-    .pipe( gulp.dest( paths.assetsBuildFolder + '/img') )
-    .pipe( $.notify({ message: 'images task complete' }) );
+    .pipe( gulp.dest( paths.assetsBuildFolder + '/img') );
+});
+
+// Clear the image cache to force reoptims
+gulp.task('clearCache', function (done) {
+  return $.cache.clearAll(done);
 });
 
 gulp.task('clean', function() {
     return del([
+        '.tmp',
         paths.assetsBuildFolder + '/css',
         paths.assetsBuildFolder + '/js',
         paths.assetsBuildFolder + '/img'
@@ -165,7 +178,7 @@ gulp.task('clean', function() {
 gulp.task( 'watch', function() {
     gulp.watch( paths.assetsFolder + '/sass/**/*.scss', [ 'css' ] );
     gulp.watch( paths.assetsFolder + '/js/**/*.js', [ 'js' ] );
-//    gulp.watch( paths.assetsFolder + '/images/**/*', ['images']) ;
+    gulp.watch( paths.assetsFolder + '/images/**/*', ['images'] );
 } );
 
 
@@ -178,5 +191,5 @@ gulp.task('dev', ['clean'], function() {
 // gulp build
 gulp.task('build', ['clean'], function() {
     isProduction = true;
-    gulp.start('modernizr', 'css', 'js');
+    gulp.start('modernizr', 'css', 'js', 'images');
 });
