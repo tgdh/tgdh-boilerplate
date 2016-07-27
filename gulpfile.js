@@ -8,11 +8,11 @@
         - Look into browserify or webpack
 
     // Assets/templates
-        - Add versioning to Assets
+        - Set up templating to replace asset references
 
     // Images
         - Need to look at this completely
-        - Gulpicon would be good ot look at
+        - Gulpicon - consider this
 
 =========================================================== */
 
@@ -88,6 +88,7 @@ gulp.task( 'css', function() {
         .pipe( $.if( isProduction, $.cssnano() ) )
 //        .pipe( $.size({ title: '[CSS]' }) )
         .pipe( $.sourcemaps.write( './' ) )
+        .pipe( $.if( isProduction, $.rev() ) )
         .pipe( gulp.dest( paths.assetsBuildFolder + '/css' ) );
 //        .pipe( $.notify({ message: 'CSS: <%= file.relative %>' }) );
 });
@@ -101,6 +102,7 @@ gulp.task('js', function() {
         .pipe( $.concat('head.js') )
         .pipe( $.if( isProduction, $.uglify({preserveComments: 'some'}) ) )
 //        .pipe( $.size({title: '[Head JS]'}) )
+        .pipe( $.if( isProduction, $.rev() ) )
         .pipe( gulp.dest( paths.assetsBuildFolder + '/js') );
 //        .pipe( $.notify({ message: 'JS: <%= file.relative %>' }) );
 
@@ -115,6 +117,7 @@ gulp.task('js', function() {
         .pipe( $.if( isProduction, $.uglify({preserveComments: 'some'}) ) )
 //        .pipe( $.size({title: '[Main JS]'}) )
         .pipe( $.sourcemaps.write('.') )
+        .pipe( $.if( isProduction, $.rev() ) )
         .pipe( gulp.dest( paths.assetsBuildFolder + '/js' ) );
 //        .pipe( $.notify({ message: 'JS: <%= file.relative %>' }) );
 
