@@ -3,15 +3,10 @@
 
     // http://www.andismith.com/blog/2014/05/the-perfect-workflow/
 
-    // JS
-        - Compare jshint to lint
-        - Look into browserify or webpack
-
     // Assets/templates
         - Set up templating to replace asset references
 
     // Images
-        - Need to look at this completely
         - Gulpicon - consider this
 
 =========================================================== */
@@ -49,6 +44,7 @@ var mainScripts = [
 var gulp = require('gulp'),
     merge = require('merge-stream'),
     del = require('del'),
+    postcss = require('gulp-postcss'),
     $ = require('gulp-load-plugins')({
         pattern: ['gulp-*', 'gulp.*'],
         replaceString: /\bgulp[\-.]/
@@ -88,7 +84,7 @@ gulp.task( 'css', function() {
         .pipe( $.if( isProduction, $.cssnano() ) )
 //        .pipe( $.size({ title: '[CSS]' }) )
         .pipe( $.sourcemaps.write( './' ) )
-        .pipe( $.if( isProduction, $.rev() ) )
+//        .pipe( $.rev() )
         .pipe( gulp.dest( paths.assetsBuildFolder + '/css' ) );
 //        .pipe( $.notify({ message: 'CSS: <%= file.relative %>' }) );
 });
@@ -102,22 +98,22 @@ gulp.task('js', function() {
         .pipe( $.concat('head.js') )
         .pipe( $.if( isProduction, $.uglify({preserveComments: 'some'}) ) )
 //        .pipe( $.size({title: '[Head JS]'}) )
-        .pipe( $.if( isProduction, $.rev() ) )
+//        .pipe( $.rev() )
         .pipe( gulp.dest( paths.assetsBuildFolder + '/js') );
 //        .pipe( $.notify({ message: 'JS: <%= file.relative %>' }) );
 
     var main = gulp.src( mainScripts )
-        .pipe( $.newer('.tmp/scripts') )
+//        .pipe( $.newer('.tmp/scripts') )
         .pipe( $.sourcemaps.init() )
         .pipe( $.sourcemaps.write() )
         .pipe( $.jshint('.jshintrc') )
         .pipe( $.jshint.reporter('default') )
-        .pipe( gulp.dest('.tmp/scripts') )
+//        .pipe( gulp.dest('.tmp/scripts') )
         .pipe( $.concat('main.js') )
         .pipe( $.if( isProduction, $.uglify({preserveComments: 'some'}) ) )
 //        .pipe( $.size({title: '[Main JS]'}) )
         .pipe( $.sourcemaps.write('.') )
-        .pipe( $.if( isProduction, $.rev() ) )
+//        .pipe( $.rev() )
         .pipe( gulp.dest( paths.assetsBuildFolder + '/js' ) );
 //        .pipe( $.notify({ message: 'JS: <%= file.relative %>' }) );
 
@@ -137,31 +133,34 @@ gulp.task('modernizr', function(){
     .pipe( gulp.dest( paths.assetsFolder + '/js/lib') );
 });
 
-// Optimize images
-// gulp.task('images', function() {
-//     return gulp.src( paths.assetsFolder + '/img/**/*')
-//         .pipe( $.cache( $.imagemin({
-//             progressive: true,
-//             interlaced: true
-//         })))
-//         .pipe( gulp.dest( paths.assetsBuildFolder + '/img') )
-//         .pipe( $.size({title: 'images'}) )
-//         .pipe( $.notify({ message: 'images task complete' }) );
-// });
-
-
-// @todo svgmin, svg2png,
-// compare imageoptim vs imagemin
-// imageoptim does png, jpg, gif - only works on mac
-// imagemin does svg, jpg, png, gif
-gulp.task('images', function() {
-  return gulp.src( paths.assetsFolder + '/img/**/*')
-    .pipe(
-        $.cache(
-            $.imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })
+gulp.task( 'ie', function() {
+    return gulp.src( '.tmp/styles/ie.css' )
+        .pipe(
+            postcss([
+                require('postcss-unmq')({
+                    type: 'screen',
+                    width: '62.5em'
+                })
+            ])
         )
-    )
-    .pipe( gulp.dest( paths.assetsBuildFolder + '/img') );
+        .pipe( $.pixrem({
+            rootValue: '62.5%',
+            replace: true
+        }) )
+        .pipe( gulp.dest( paths.assetsBuildFolder + '/css/' ) );
+//        .pipe( $.notify({ message: 'CSS: <%= file.relative %>' }) );
+});
+
+// Optimize images
+gulp.task('images', function() {
+    return gulp.src( paths.assetsFolder + '/img/**/*')
+        .pipe( $.cache( $.imagemin({
+            progressive: true,
+            interlaced: true
+        })))
+        .pipe( gulp.dest( paths.assetsBuildFolder + '/img') )
+        .pipe( $.size({title: 'images'}) )
+        .pipe( $.notify({ message: 'images task complete' }) );
 });
 
 // Clear the image cache to force reoptims
@@ -186,13 +185,13 @@ gulp.task( 'watch', function() {
 
 
 // gulp dev
-gulp.task('dev', ['clean'], function() {
+gulp.task('dev', ['clean','modernizr'], function() {
     isProduction = false;
-    gulp.start('modernizr', 'css', 'js', 'watch');
+    gulp.start('css', 'js', 'watch');
 });
 
 // gulp build
-gulp.task('build', ['clean'], function() {
+gulp.task('build', ['clean','modernizr'], function() {
     isProduction = true;
-    gulp.start('modernizr', 'css', 'js', 'images');
+    gulp.start('css', 'js', 'images');
 });
