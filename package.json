@@ -9,6 +9,7 @@
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-cache": "^0.4.5",
+    "gulp-cachebust": "0.0.6",
     "gulp-clean-css": "^2.0.10",
     "gulp-combine-mq": "^0.4.0",
     "gulp-concat": "^2.6.0",
@@ -22,14 +23,13 @@
     "gulp-notify": "^2.2.0",
     "gulp-pixrem": "^1.0.0",
     "gulp-postcss": "^6.1.1",
-    "postcss-unmq": "^1.0.2",
-    "gulp-rev": "^7.1.0",
     "gulp-sass": "^2.3.2",
     "gulp-size": "^2.1.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^2.0.0",
     "gulp-util": "^3.0.7",
     "jshint": "^2.9.2",
-    "merge-stream": "^1.0.0"
+    "merge-stream": "^1.0.0",
+    "postcss-unmq": "^1.0.2"
   }
 }

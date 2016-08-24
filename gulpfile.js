@@ -2,8 +2,9 @@
 
 var paths = {
     assetsFolder: '_assets',
-    siteFolder: 'src',
-    assetsBuildFolder: 'site/assets'
+    templates: '_templates',
+    siteFolder: 'testSite',
+    assetsBuildFolder: 'testSite/assets'
 }
 
 /* ===========================================================
@@ -36,6 +37,9 @@ var gulp = require('gulp'),
         pattern: ['gulp-*', 'gulp.*'],
         replaceString: /\bgulp[\-.]/
     });
+
+var CacheBuster = require('gulp-cachebust');
+var cachebust = new CacheBuster();
 
 var isProduction = false;
 
@@ -71,7 +75,7 @@ gulp.task( 'css', function() {
         .pipe( $.if( isProduction, $.cssnano() ) )
 //        .pipe( $.size({ title: '[CSS]' }) )
         .pipe( $.sourcemaps.write( './' ) )
-//        .pipe( $.rev() )
+        .pipe( $.if( isProduction, cachebust.resources() ) )
         .pipe( gulp.dest( paths.assetsBuildFolder + '/css' ) );
 //        .pipe( $.notify({ message: 'CSS: <%= file.relative %>' }) );
 });
@@ -84,7 +88,7 @@ gulp.task('js', function() {
         .pipe( $.concat('head.js') )
         .pipe( $.if( isProduction, $.uglify({preserveComments: 'some'}) ) )
 //        .pipe( $.size({title: '[Head JS]'}) )
-        .pipe( $.if( isProduction, $.rev() ) )
+        .pipe( $.if( isProduction, cachebust.resources() ) )
         .pipe( gulp.dest( paths.assetsBuildFolder + '/js') );
 //        .pipe( $.notify({ message: 'JS: <%= file.relative %>' }) );
 
@@ -99,7 +103,7 @@ gulp.task('js', function() {
         .pipe( $.if( isProduction, $.uglify({preserveComments: 'some'}) ) )
 //        .pipe( $.size({title: '[Main JS]'}) )
         .pipe( $.sourcemaps.write('.') )
-        .pipe( $.if( isProduction, $.rev() ) )
+        .pipe( $.if( isProduction, cachebust.resources() ) )
         .pipe( gulp.dest( paths.assetsBuildFolder + '/js' ) );
 //        .pipe( $.notify({ message: 'JS: <%= file.relative %>' }) );
 
@@ -147,7 +151,7 @@ gulp.task('images', function() {
         })))
         .pipe( gulp.dest( paths.assetsBuildFolder + '/img') )
         .pipe( $.size({title: 'images'}) )
-        .pipe( $.notify({ message: 'images task complete' }) );
+//        .pipe( $.notify({ message: 'images task complete' }) );
 });
 
 // Copy fonts
@@ -182,14 +186,21 @@ gulp.task( 'watch', function() {
 } );
 
 
+// Copy master template with correct asset references
+gulp.task('refAssets', ['css','js'], function() {
+    return gulp.src( paths.templates + '/Master.cshtml')
+        .pipe( $.if( isProduction, cachebust.references() ) )
+        .pipe( gulp.dest( paths.siteFolder + '/Views' ) );
+});
+
 // gulp dev
 gulp.task('dev', ['clean','modernizr'], function() {
     isProduction = false;
-    gulp.start('css', 'js', 'images', 'watch', 'copyfonts');
+    gulp.start('refAssets', 'images', 'watch', 'copyfonts');
 });
 
 // gulp build
 gulp.task('build', ['clean', 'modernizr'], function() {
     isProduction = true;
-    gulp.start('css', 'js', 'images', 'copyfonts');
+    gulp.start('refAssets', 'images', 'copyfonts');
 });
