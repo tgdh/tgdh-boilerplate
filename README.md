@@ -2,7 +2,7 @@
 
 > Boilerplate to kickstart front-end projects
 
-This project always in development but is in a good state to be used.
+This project is still in development but is in a good state to be used.
 
 * * *
 
