@@ -1,0 +1,15 @@
+<div class="o-form__field{{#if valid}} is-valid{{/if}}{{#if invalid}} is-invalid{{/if}}{{#if disabled}} is-disabled{{/if}}">
+	<fieldset class="o-fieldset"{{#if disabled}} disabled{{/if}}>
+		<legend class="o-fieldset__legend">{{label}} {{#if optional}}<span class="o-label__note">Optional</span>{{/if}}</legend>
+		<ul class="o-fieldset__list">
+			{{#each radios}}
+				<li class="o-fieldset__item">
+					<label class="o-label o-radio" for="{{for}}">
+						<input id="{{for}}" type="radio" name="{{name}}" class="o-radio__input"> 
+						<span class="o-radio__label">{{radioValue}}</span>
+					</label>
+				</li>
+			{{/each}}
+		</ul>
+	</fieldset>
+</div>

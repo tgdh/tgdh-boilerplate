@@ -1,0 +1,14 @@
+{
+	"success": {
+		"name": "success",
+		"message": "You successfully read this important alert message."
+	},
+	"info": {
+		"name": "info",
+		"message": "This alert needs your attention, but it's not super important."
+	},
+	"error": {
+		"name": "error",
+		"message": "Change a few things up and try submitting again."
+	}	
+}
