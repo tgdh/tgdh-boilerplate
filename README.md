@@ -27,12 +27,12 @@ gulp dev
 
 Running the build task will take care of everything ready for deployment
 ```bash
-> gulp build
+gulp build
 ```
 
 ##4. CSS
 
-This project uses [Sass](http://sass-lang.com/) as it's CSS pre-processor. The main file for this project is `main.scss`, any new file references must be added in here.
+This project uses [SCSS](http://sass-lang.com/) as it's CSS pre-processor. The main file for this project is `main.scss`, any new file references must be added in here.
 
 
 ###4.1 Naming conventions
