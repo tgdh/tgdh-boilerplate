@@ -2,9 +2,9 @@
 .ftppass
 .tmp
 
-assets/_components
-assets/js/modernizr.js
-umbraco/assets/
+_assets/_components
+_assets/js/modernizr.js
+**/assets/
 node_modules
 sitespeed-result
 
@@ -42,8 +42,4 @@ Desktop.ini
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 
-umbraco/Views/Master.cshtml
 dev
-
-assets/js/lib/modernizr.js
-test-assets

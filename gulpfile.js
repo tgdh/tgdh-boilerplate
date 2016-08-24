@@ -1,22 +1,9 @@
-/* ===========================================================
-	# TODO
-
-    // http://www.andismith.com/blog/2014/05/the-perfect-workflow/
-
-    // Assets/templates
-        - Set up templating to replace asset references
-
-    // Images
-        - Gulpicon - consider this
-
-=========================================================== */
-
 'use strict';
 
 var paths = {
-    assetsFolder: 'assets',
+    assetsFolder: '_assets',
     siteFolder: 'src',
-    assetsBuildFolder: 'test-assets'
+    assetsBuildFolder: 'site/assets'
 }
 
 /* ===========================================================
@@ -27,9 +14,9 @@ var headScripts = [
     paths.assetsFolder + '/js/lib/modernizr.js',
     paths.assetsFolder + '/js/utils/is-modern.js',
     paths.assetsFolder + '/_components/picturefill/dist/picturefill.js',
-    paths.assetsFolder + '<%= assetsFolder %>/js/lib/lazysizes.config.js',
-    paths.assetsFolder + '<%= assetsFolder %>/_components/lazysizes/lazysizes.js',
-    paths.assetsFolder + '<%= assetsFolder %>/_components/lazysizes/plugins/unveilhooks/ls.unveilhooks.js'
+    paths.assetsFolder + '/js/lib/lazysizes.config.js',
+    paths.assetsFolder + '/_components/lazysizes/lazysizes.js',
+    paths.assetsFolder + '/_components/lazysizes/plugins/unveilhooks/ls.unveilhooks.js'
 ];
 
 var mainScripts = [
@@ -89,8 +76,7 @@ gulp.task( 'css', function() {
 //        .pipe( $.notify({ message: 'CSS: <%= file.relative %>' }) );
 });
 
-// @todo js: Compare jshint to lint
-// @todo js: look into browserify
+// JS
 gulp.task('js', function() {
     var head = gulp.src( headScripts )
         .pipe( $.newer('.tmp/scripts') )
@@ -98,7 +84,7 @@ gulp.task('js', function() {
         .pipe( $.concat('head.js') )
         .pipe( $.if( isProduction, $.uglify({preserveComments: 'some'}) ) )
 //        .pipe( $.size({title: '[Head JS]'}) )
-//        .pipe( $.rev() )
+        .pipe( $.if( isProduction, $.rev() ) )
         .pipe( gulp.dest( paths.assetsBuildFolder + '/js') );
 //        .pipe( $.notify({ message: 'JS: <%= file.relative %>' }) );
 
@@ -113,7 +99,7 @@ gulp.task('js', function() {
         .pipe( $.if( isProduction, $.uglify({preserveComments: 'some'}) ) )
 //        .pipe( $.size({title: '[Main JS]'}) )
         .pipe( $.sourcemaps.write('.') )
-//        .pipe( $.rev() )
+        .pipe( $.if( isProduction, $.rev() ) )
         .pipe( gulp.dest( paths.assetsBuildFolder + '/js' ) );
 //        .pipe( $.notify({ message: 'JS: <%= file.relative %>' }) );
 
@@ -133,6 +119,7 @@ gulp.task('modernizr', function(){
     .pipe( gulp.dest( paths.assetsFolder + '/js/lib') );
 });
 
+// IE
 gulp.task( 'ie', function() {
     return gulp.src( '.tmp/styles/ie.css' )
         .pipe(
@@ -163,20 +150,31 @@ gulp.task('images', function() {
         .pipe( $.notify({ message: 'images task complete' }) );
 });
 
+// Copy fonts
+gulp.task('copyfonts', function() {
+    gulp.src( paths.assetsFolder + '/fonts/**/*')
+    .pipe( $.newer('.tmp/fonts') )
+    .pipe( gulp.dest('.tmp/fonts') )
+    .pipe( gulp.dest( paths.assetsBuildFolder + '/fonts') );
+});
+
 // Clear the image cache to force reoptims
 gulp.task('clearCache', function (done) {
   return $.cache.clearAll(done);
 });
 
+// Clean directories
 gulp.task('clean', function() {
     return del([
         '.tmp',
         paths.assetsBuildFolder + '/css',
         paths.assetsBuildFolder + '/js',
-        paths.assetsBuildFolder + '/img'
+        paths.assetsBuildFolder + '/img',
+        paths.assetsBuildFolder + '/fonts'
     ]);
 });
 
+// Watch task
 gulp.task( 'watch', function() {
     gulp.watch( paths.assetsFolder + '/sass/**/*.scss', [ 'css' ] );
     gulp.watch( paths.assetsFolder + '/js/**/*.js', [ 'js' ] );
@@ -187,11 +185,11 @@ gulp.task( 'watch', function() {
 // gulp dev
 gulp.task('dev', ['clean','modernizr'], function() {
     isProduction = false;
-    gulp.start('css', 'js', 'watch');
+    gulp.start('css', 'js', 'images', 'watch', 'copyfonts');
 });
 
 // gulp build
-gulp.task('build', ['clean','modernizr'], function() {
+gulp.task('build', ['clean', 'modernizr'], function() {
     isProduction = true;
-    gulp.start('css', 'js', 'images');
+    gulp.start('css', 'js', 'images', 'copyfonts');
 });
