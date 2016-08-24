@@ -1,12 +1,9 @@
 .sass-cache
-.ftppass
 .tmp
 
 _assets/_components
 _assets/js/modernizr.js
-**/assets/
 node_modules
-sitespeed-result
 
 # Umbraco
 **/connectionStrings.config
