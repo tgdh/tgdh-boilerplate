@@ -13,7 +13,8 @@
 	@include hide-text;
 }
 
-.u-center-content {
+.u-center-content,
+.u-center-text {
 	text-align: center;
 }
 
@@ -38,7 +39,7 @@
 }
 
 .u-space-bottom {
-	margin-bottom: $line-height;
+	margin-bottom: $line-height
 }
 
 .u-space-bottom--large {
