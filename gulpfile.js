@@ -1,3 +1,5 @@
+/* jshint node: true */
+
 'use strict';
 
 var paths = {
@@ -5,7 +7,7 @@ var paths = {
     templates: '_templates',
     siteFolder: 'testSite',
     assetsBuildFolder: 'testSite/assets'
-}
+};
 
 /* ===========================================================
 	# Scripts
@@ -21,7 +23,7 @@ var headScripts = [
 ];
 
 var mainScripts = [
-    paths.assetsFolder + '/js/components/jquery.tabs.js',
+    paths.assetsFolder + '/js/components/*.js',
     paths.assetsFolder + '/js/main.js'
 ];
 
@@ -150,7 +152,7 @@ gulp.task('images', function() {
             interlaced: true
         })))
         .pipe( gulp.dest( paths.assetsBuildFolder + '/img') )
-        .pipe( $.size({title: 'images'}) )
+        .pipe( $.size({title: 'images'}) );
 //        .pipe( $.notify({ message: 'images task complete' }) );
 });
 
