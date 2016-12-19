@@ -77,7 +77,7 @@ Do this:
 .o-block__element {}
 ```
 
-There are some circumstances where nesting is acceptable, these are for psuedo elements(`:before`), states(`:hover`), dependencies(`.no-enhance`) and scopes(`.s-`) but as mentioned above scopes should be avoided unless truly needed.
+There are some circumstances where nesting is acceptable, these are for psuedo elements(`:before`), states(`:hover`), dependencies(`.no-enhance`) and scopes(`.s-`) but as mentioned above scopes should be avoided unless needed.
 
 Acceptable:
 ```
@@ -97,6 +97,30 @@ Acceptable:
 ```
 
 ##5. JS
+
+This project follows the Revealing Modular Pattern [Private Naming Conventions](https://toddmotto.com/mastering-the-module-pattern/#private-naming-conventions)
+
+Code should be broken down into component based modules which can be configured as necessary.
+If applicable, settings should be configurable through `data-attributes` to allow for variety. An example of this might be a carousel which enables dots in one location and navigation arrows in another. 
+
+```
+var Module = (function () {
+
+  var _privateMethod = function () {
+    // private stuff
+  };
+
+  var publicMethod = function () {
+    _privateMethod();
+  };
+
+  return {
+    publicMethod: publicMethod
+  };
+
+})();
+```
+
 
 ##6. Browser support
 
