@@ -39,7 +39,7 @@ This project uses [SCSS](http://sass-lang.com/) as it's CSS pre-processor. The m
 
 This project follows the [BEMIT](http://csswizardry.com/2015/08/bemit-taking-the-bem-naming-convention-a-step-further/) methodology. This is an extension of the Block Element Modifier (BEM) methodology as it adopts patterns from the [Inverted Triangle CSS (ITCSS)](https://twitter.com/itcss_io) architecture.
 
-All class names should follow the BEM naming convention with the addition of descriptive name spaces, these name spaces are as follows:
+All class names should follow the BEM naming convention with the addition of descriptive namespaces, these namespaces are as follows:
 
 ```
 .o- /* objects */
@@ -49,7 +49,7 @@ All class names should follow the BEM naming convention with the addition of des
 .s- /* scope */
 ```
 
-As shown above, classes prefixed with these name spaces should also sit in the relevant folder, for example `.o-` styles should be placed in the `objects` folder.
+As shown above, classes prefixed with these namespaces should also sit in the relevant folder. For example `.o-` styles should be placed in the `objects` folder.
 
 The only exception here is the scope name space (`.s-`), which should be avoided as it involves [nesting classes](#nesting). But if you find the need to use one then it should be placed in the `trumps` folder.
 
