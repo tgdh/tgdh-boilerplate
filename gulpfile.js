@@ -19,7 +19,7 @@ var headScripts = [
     paths.assetsFolder + '/_components/picturefill/dist/picturefill.js',
     paths.assetsFolder + '/js/lib/lazysizes.config.js',
     paths.assetsFolder + '/_components/lazysizes/lazysizes.js',
-    paths.assetsFolder + '/_components/lazysizes/plugins/unveilhooks/ls.unveilhooks.js'
+//    paths.assetsFolder + '/_components/lazysizes/plugins/unveilhooks/ls.unveilhooks.js'
 ];
 
 var mainScripts = [
