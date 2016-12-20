@@ -23,6 +23,7 @@ var headScripts = [
 ];
 
 var mainScripts = [
+    paths.assetsFolder + '/_components/slick-carousel/slick/slick.js',
     paths.assetsFolder + '/js/components/*.js',
     paths.assetsFolder + '/js/main.js'
 ];

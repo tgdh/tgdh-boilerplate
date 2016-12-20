@@ -1,4 +1,4 @@
-/*
+
 var Carousel = (function ($) {
 	'use strict';
 
@@ -52,4 +52,3 @@ var Carousel = (function ($) {
 	};
 
 })(jQuery);
-*/

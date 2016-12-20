@@ -29,19 +29,22 @@
 }
 
 .c-carousel__nav {
-	color: $border-colour;
+	color: $white;
+	background-color: $pri;
+	padding: 1rem;
+	border-radius: 50%;
 	position: absolute;
 	top: 50%;
 	z-index: 2;
 	line-height: 1;
 	font-size: 3.2rem;
 	text-align: center;
-	transform: translateY( -50% );
-	transition: color $speed $ease;
+	transition: color $speed $ease,
+				background-color $speed $ease;
 
 	&:hover,
 	&:focus {
-		color: $pri;
+		background-color: $sec;
 	}
 
 	&.slick-disabled {
@@ -53,10 +56,12 @@
 
 .c-carousel__nav--prev {
 	left: 0;
+	transform: translate( -50%, -50% );
 }
 
 .c-carousel__nav--next {
 	right: 0;
+	transform: translate( 50%, -50% );
 }
 
 .c-carousel--invert {
@@ -93,33 +98,6 @@
         margin: 0 .5rem;
         padding: 0;
         cursor: pointer;
-
-		&:before {
-			content: "";
-			width: 1.7rem;
-			height: .2rem;
-			display: block;
-			position: absolute;
-			top: -.6rem;
-			left: .2rem;
-			transition: background $speed $ease;
-		}
-
-		&.slick-active:before {
-			background-color: $pri;
-		}
-
-
-		&:hover,
-		&:focus,
-		&.slick-active {
-
-			button:before {
-				background-color: $pri;
-			}
-
-		}
-
 	}
 
     button {
@@ -135,28 +113,22 @@
         padding: .5rem;
         cursor: pointer;
 		border-radius: 50%;
+		transition: background-color $speed $ease,
+					border-color $speed $ease;
 
         &:hover,
 		&:focus {
             outline: none;
         }
-
-        &:before {
-			content: "";
-			width: .7rem;
-            height: .7rem;
-            position: absolute;
-            top: 0;
-            left: 0;
-			margin: .7rem;
-			border-radius: 50%;
-            line-height: 2.1rem;
-            text-align: center;
-			transition: background $speed $ease;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
     }
+
+	.slick-active {
+
+		button {
+			background-color: $pri;
+		}
+
+	}
 
 }
 
@@ -172,7 +144,6 @@
 			&.slick-active:before {
 				background-color: $white;
 			}
-
 
 			&:hover,
 			&:focus,
@@ -195,6 +166,7 @@
 		bottom: $line-height;;
 	}
 }
+
 
 @include respond-min( $mq-large ) {
 

@@ -40,6 +40,9 @@
 		'objects/media',
 		'objects/page-components';
 
+@import 'lib/slick',
+		'lib/magnific-popup';
+
 @import 'components/header',
 		'components/nav',
 		'components/buttons',
@@ -47,9 +50,11 @@
 		'components/quote',
 		'components/footer',
 		'components/caption',
-//		'components/link-list'
+//		'components/accordion',
 //		'components/carousel',
-//		'components/breadcrumb',
+//		'components/link-list',
+		'components/carousel',
+		'components/breadcrumb',
 //		'components/map',
 //		'components/social',
 //		'components/tile',
