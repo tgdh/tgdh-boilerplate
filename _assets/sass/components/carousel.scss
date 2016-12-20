@@ -119,6 +119,7 @@
         &:hover,
 		&:focus {
             outline: none;
+			background-color: $pri;
         }
     }
 
@@ -141,18 +142,13 @@
 		}
 
 		li {
-			&.slick-active:before {
+			&.slick-active {
 				background-color: $white;
 			}
 
 			&:hover,
-			&:focus,
-			&.slick-active {
-
-				button:before {
-					background-color: $white;
-				}
-
+			&:focus {
+				background-color: $white;
 			}
 		}
 
