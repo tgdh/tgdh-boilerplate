@@ -5,12 +5,13 @@ This project is constantly in development but is in a good state to be used.
 
 ## Installing / Getting started
 
-A quick introduction of the minimal setup you need to get a hello world up &
-running.
+A quick introduction of the minimal setup you need to get running.
 
 ```shell
-npm install gulp-cli -g
-npm install -g bower
+git clone https://github.com/tgdh/tgdh-boilerplate.git
+cd tgdh-boilerplate
+npm install
+bower install
 ```
 
 Here you should say what actually happens when you execute the code above.
@@ -24,18 +25,6 @@ What is needed to set up the dev environment. For instance, global dependencies 
 - [Gulp](https://gulpjs.com/)
 - [Bower](https://bower.io/)
 - [SASS](http://sass-lang.com/)
-
-### Setting up Dev
-
-Here's a brief intro about what a developer must do in order to start developing
-the project further:
-
-```shell
-git clone https://github.com/tgdh/tgdh-boilerplate.git
-cd tgdh-boilerplate
-npm install
-bower install
-```
 
 ### Development/Building
 
