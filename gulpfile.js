@@ -148,10 +148,10 @@ gulp.task( 'ie', function() {
 // Optimize images
 gulp.task('images', function() {
     return gulp.src( paths.assetsFolder + '/img/**/*')
-        .pipe( $.cache( $.imagemin({
-            progressive: true,
-            interlaced: true
-        })))
+		.pipe( $.cache( $.imagemin({
+			progressive: true,
+			interlaced: true
+		})))
         .pipe( gulp.dest( paths.assetsBuildFolder + '/img') )
         .pipe( $.size({title: 'images'}) );
 //        .pipe( $.notify({ message: 'images task complete' }) );
