@@ -35,7 +35,8 @@ var mainScripts = [
 var gulp = require('gulp'),
     merge = require('merge-stream'),
     del = require('del'),
-    postcss = require('gulp-postcss'),
+	postcss = require('gulp-postcss'),
+	svgSprite = require('gulp-svg-sprite'),
     $ = require('gulp-load-plugins')({
         pattern: ['gulp-*', 'gulp.*'],
         replaceString: /\bgulp[\-.]/
@@ -126,6 +127,27 @@ gulp.task('modernizr', function(){
     .pipe( gulp.dest( paths.assetsFolder + '/js/lib') );
 });
 
+// icons
+gulp.task('icons', function() {
+    return gulp.src(paths.assetsFolder + '/img/icons/**/*.svg')
+		.pipe($.svgmin())
+        .pipe(svgSprite({
+            mode: {
+                symbol: { // symbol mode to build the SVG
+                    dest: 'icons', // destination foldeer
+                    sprite: 'icons.svg', //sprite name
+                    example: true, // Build sample page
+					prefix: "u-icon-"
+                }
+            },
+            svg: {
+                xmlDeclaration: false, // strip out the XML attribute
+                doctypeDeclaration: false // don't include the !DOCTYPE declaration
+            }
+        }))
+        .pipe(gulp.dest(paths.assetsBuildFolder));
+});
+
 // IE
 gulp.task( 'ie', function() {
     return gulp.src( '.tmp/styles/ie.css' )
@@ -185,8 +207,9 @@ gulp.task('clean', function() {
 gulp.task( 'watch', function() {
     gulp.watch( paths.assetsFolder + '/sass/**/*.scss', [ 'css' ] );
     gulp.watch( paths.assetsFolder + '/js/**/*.js', [ 'js' ] );
-    gulp.watch( paths.assetsFolder + '/images/**/*', ['images'] );
-} );
+	gulp.watch( paths.assetsFolder + '/images/**/*', ['images'] );
+	gulp.watch( paths.assetsFolder + '/img/icons/**/*.svg', ['icons'] );
+});
 
 
 // Copy master template with correct asset references
@@ -199,11 +222,11 @@ gulp.task('refAssets', ['css','js'], function() {
 // gulp dev
 gulp.task('dev', ['clean','modernizr'], function() {
     isProduction = false;
-    gulp.start('refAssets', 'images', 'watch', 'copyfonts');
+    gulp.start('refAssets', 'images', 'watch', 'copyfonts', 'icons');
 });
 
 // gulp build
 gulp.task('build', ['clean', 'modernizr'], function() {
     isProduction = true;
-    gulp.start('refAssets', 'images', 'copyfonts');
+    gulp.start('refAssets', 'images', 'copyfonts', 'icons');
 });
