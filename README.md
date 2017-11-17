@@ -19,7 +19,8 @@ Here you should say what actually happens when you execute the code above.
 ## Developing
 
 ### Prerequisites
-What is needed to set up the dev environment. For instance, global dependencies or any other tools. include download links.
+
+The following dependencies are required to run the boilerplate:
 
 - [Node](https://nodejs.org/en/)
 - [Gulp](https://gulpjs.com/)
@@ -38,14 +39,9 @@ Running the build task will take care of everything ready for deployment
 gulp build
 ```
 
-## Configuration
+## Style guides
 
-Here you should write what are all of the configurations a user can enter when
-using the project.
-
-## Style guide
-
-Explain your code style and show how to check it.
+More details about the code styles can be found here:
 
 - [CSS styleguide](docs/css-styleguide.md)
 - [js styleguide](docs/js-styleguide.md)
