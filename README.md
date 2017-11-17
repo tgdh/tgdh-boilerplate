@@ -62,9 +62,6 @@ Explain your code style and show how to check it.
 - [js styleguide](docs/js-styleguide.md)
 
 
-
-
-
-##6. Browser support
+## Browser support
 
 This project has been built with progressive enhancement at its core. It uses an approach first coined by the BBC known as [Cutting the Mustard](http://responsivenews.co.uk/post/18948466399/cutting-the-mustard).
