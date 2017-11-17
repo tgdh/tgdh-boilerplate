@@ -2,7 +2,6 @@
   "name": "tgdh-boilerplate",
   "version": "3.0.2",
   "description": "",
-  "siteURL": "http://boilerplate.tgdh.co.uk",
   "devDependencies": {
     "assemble": "~0.17.1",
     "del": "^2.2.0",
