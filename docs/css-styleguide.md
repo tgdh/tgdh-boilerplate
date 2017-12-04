@@ -1,7 +1,5 @@
 # CSS style guide
 
-[TOC]
-
 ## Terminology
 ### Rule declaration
 A "rule declaration" is the name given to a selector (or a group of selectors) with an accompanying group of properties.
@@ -21,7 +19,7 @@ In a rule declaration, "selectors" are the bits that determine which elements in
     // ...
 }
 
-[araia-hidden] {
+[aria-hidden] {
     // ...
 }
 ```
