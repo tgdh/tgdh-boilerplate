@@ -3,6 +3,9 @@
 
 This project is constantly in development but is in a good state to be used.
 
+## Generator
+New projects can be started by using the Yeoman [generator](https://github.com/tgdh/generator-tgdh-boilerplate)
+
 ## Installing / Getting started
 
 A quick introduction of the minimal setup you need to get running.

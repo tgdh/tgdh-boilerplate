@@ -5,8 +5,8 @@
 var paths = {
     assetsFolder: '_assets',
     templates: '_templates',
-    siteFolder: 'testSite',
-    assetsBuildFolder: 'testSite/assets'
+    siteFolder: 'dist',
+    assetsBuildFolder: 'dist/assets'
 };
 
 /* ===========================================================
