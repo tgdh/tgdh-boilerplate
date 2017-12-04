@@ -1,7 +1,7 @@
 # TGDH front-end boilerplate
 > Boilerplate to kickstart front-end projects
 
-This project is constantly in development but is in a good state to be used.
+This project is always in development but is in a good state to be used.
 
 ## Generator
 New projects can be started by using the Yeoman [generator](https://github.com/tgdh/generator-tgdh-boilerplate)
@@ -47,7 +47,7 @@ gulp build
 More details about the code styles can be found here:
 
 - [CSS styleguide](docs/css-styleguide.md)
-- [js styleguide](docs/js-styleguide.md)
+- [JS styleguide](docs/js-styleguide.md)
 
 
 ## Browser support
