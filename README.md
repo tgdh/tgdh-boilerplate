@@ -17,7 +17,7 @@ npm install
 bower install
 ```
 
-Here you should say what actually happens when you execute the code above.
+This will clone the working repository and install any dependencies from NPM and Bower.
 
 ## Developing
 
